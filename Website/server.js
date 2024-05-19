@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const session = require('express-session');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
+const axios = require('axios');
 const app = express();
 const port = process.env.PORT || 3000;
 
@@ -36,6 +37,24 @@ passport.deserializeUser((username, done) => {
 // Routes
 app.get('/', (req, res) => {
   res.send('Hello World!');
+});
+
+app.get('/stocks', async (req, res) => {
+  try {
+    const response = await axios.get('https://api.example.com/stocks'); // Replace with actual API URL
+    res.json(response.data);
+  } catch (error) {
+    res.status(500).send('Error fetching stock prices');
+  }
+});
+
+app.get('/news', async (req, res) => {
+  try {
+    const response = await axios.get('https://api.example.com/news'); // Replace with actual API URL
+    res.json(response.data);
+  } catch (error) {
+    res.status(500).send('Error fetching news');
+  }
 });
 
 app.post('/login', passport.authenticate('local', { successRedirect: '/', failureRedirect: '/login' }));
