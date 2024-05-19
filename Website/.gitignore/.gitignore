@@ -106,3 +106,44 @@ Recent/
 SendTo/
 Start Menu/
 Templates/
+# System directories
+Application Data/
+Cookies/
+Local Settings/
+My Documents/
+NetHood/
+PrintHood/
+Recent/
+SendTo/
+Start Menu/
+Templates/
+
+# Other exclusions
+*.log
+node_modules/
+.vscode/
+.DS_Store
+# System directories
+/Application Data/
+/Cookies/
+/Local Settings/
+/My Documents/
+/NetHood/
+/PrintHood/
+/Recent/
+/SendTo/
+/Start Menu/
+/Templates/
+/AppData/
+/Documents/My Music/
+/Documents/My Pictures/
+/Documents/My Videos/
+
+# Other common exclusions
+*.log
+node_modules/
+.vscode/
+.DS_Store
+
+# Exclude all hidden directories (starting with .)
+.*
