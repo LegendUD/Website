@@ -4,6 +4,7 @@ const session = require('express-session');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const axios = require('axios');
+const path = require('path');
 const app = express();
 const port = process.env.PORT || 3000;
 
@@ -12,6 +13,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(session({ secret: 'your_secret_key', resave: false, saveUninitialized: false }));
 app.use(passport.initialize());
 app.use(passport.session());
+
+// Serve static files
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Passport local strategy
 passport.use(new LocalStrategy((username, password, done) => {
@@ -35,10 +39,6 @@ passport.deserializeUser((username, done) => {
 });
 
 // Routes
-app.get('/', (req, res) => {
-  res.send('Hello World!');
-});
-
 app.get('/stocks', async (req, res) => {
   try {
     const response = await axios.get('https://api.example.com/stocks'); // Replace with actual API URL
